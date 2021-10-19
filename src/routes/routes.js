@@ -17,5 +17,7 @@ module.exports = (app) => {
   app.get('/duckduck/api', duckController.getDuckDuckData)
 
   //currency **BTC-USD**, **ETH-USD** and **LTC-USD**
-  app.get('/currecny/ltc-usd')
+  app.get('/currecny/excersize', currencyController.getExCurrencyRates)
+  app.get('/currency/all-history', currencyController.fetchAllHistoricalRates)
+  app.get('/currency/by-symbol', currencyController.getCurrencyRateBySymbol)
 }
