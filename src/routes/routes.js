@@ -16,8 +16,12 @@ module.exports = (app) => {
   //duckduckgo
   app.get('/duckduck/api', duckController.getDuckDuckData)
 
-  //currency 
+  //currency
+
+  //gets bitcoin, etherium and litecoin rates from coinmarketcap and saves them to db.
   app.get('/currecny/excersize', currencyController.getExCurrencyRates)
+  //gets all saved currencies from the db.
   app.get('/currency/all-history', currencyController.fetchAllHistoricalRates)
+  //gets a currency from coinmarketcap according to a symbol provided and saves it to the db.
   app.get('/currency/by-symbol', currencyController.getCurrencyRateBySymbol)
 }
