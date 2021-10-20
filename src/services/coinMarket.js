@@ -20,17 +20,24 @@ module.exports = {
     }
     return rp(options)
       .then((res) => {
-        console.log(_.get(res, `data.${currencies.btc}.name`))
-        return res
+        const rates = Object.entries(res.data).map((currentRate) => {
+          return {
+            symbol: currentRate[1].symbol,
+            rate: currentRate[1].quote.USD.price,
+          }
+        })
+        return rates
       })
       .catch((e) => {
-        console.log(e)
         return reject(e)
       })
   },
   saveRates: (rates) => {
     //save rates to DB
     console.log(currencies.btc)
+  },
+  saveRatesBulk: (rates) => {
+    //save a bulk of rates
   },
   fetchSavedRated: async (days) => {
     const tasks = await Task.findAll()

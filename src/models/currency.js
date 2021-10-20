@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const currencySchema = new mongoose.Schema(
   {
-    name: {
+    symbol: {
       type: String,
       required: true,
       trim: true,
