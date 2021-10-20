@@ -7,7 +7,6 @@ simple backend demo app
   run - npm run dev.
 
 - known issues
-  - cron job microservice not completed yet due to time issue.
   - duckduckgo response not parsed yet.
 
 duckduckgo -
@@ -21,4 +20,4 @@ weather -
 two methodes for getting the weather from accuweather - either by location key
 or by city.
 
-please contact me for .env file with keys.
+please contact me @ nevoroy@gmail.com for .env file with keys.
