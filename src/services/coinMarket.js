@@ -43,8 +43,6 @@ module.exports = {
         reject(e)
       }
     })
-
-    return
   },
   saveRatesBulk: async (rates) => {
     //save a bulk of rates

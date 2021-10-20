@@ -16,7 +16,6 @@ module.exports = {
       }
       const rate = await getCurrencyRateBySymbol(symbol)
       const saved = await saveRate(rate)
-      console.log('save succes')
       res.status(200).send(saved)
     } catch (e) {
       res.status(500).send(e)
