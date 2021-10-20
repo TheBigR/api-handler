@@ -7,10 +7,13 @@ module.exports = (app) => {
     res.send('working')
   })
   //Weather
+  //gets weather of a location according to its key.
   app.post(
     '/weather/weather-by-location-key',
     weatherController.getWeatherBylocationKey,
   )
+
+  //gets weather of a city.
   app.post('/weather/weather-by-city', weatherController.getWeatherByCity)
 
   //duckduckgo
