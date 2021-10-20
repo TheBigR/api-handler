@@ -8,13 +8,16 @@ simple backend demo app
 
 - known issues
   - cron job microservice not completed yet due to time issue.
+  - duckduckgo response not parsed yet.
 
+duckduckgo -
+getting a respone according to a query string.
 
-currencies - 
+currencies -
 excercise rates of ltc, btc and eth fetched from coinmarketcap.
 currency rates saved to db.
 
-weather - 
+weather -
 two methodes for getting the weather from accuweather - either by location key
 or by city.
 
