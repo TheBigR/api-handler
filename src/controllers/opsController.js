@@ -4,7 +4,7 @@ const { toggleCronJob, getCronJobStatus } = require('../services/opsService')
 module.exports = {
   toggleCronJob: async (req, res, next) => {
     try {
-      const name = _.get(req, 'query.name')
+      const name = process.env.CURRENCY_CRON_JOB_NAME
       if (!name) {
         throw new Error('Missing params')
       }
@@ -17,7 +17,7 @@ module.exports = {
   },
   getCronJobStatus: async (req, res, next) => {
     try {
-      const name = _.get(req, 'query.name')
+      const name = process.env.CURRENCY_CRON_JOB_NAME
       if (!name) {
         throw new Error('Missing params')
       }
