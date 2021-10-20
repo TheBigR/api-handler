@@ -1,34 +1,38 @@
 const _ = require('lodash')
 const {
   getRates,
-  saveRates,
+  saveRate,
+  saveRatesBulk,
   fetchSavedRated,
-  getCurrencyRateBySymbol
+  getCurrencyRateBySymbol,
 } = require('../services/coinMarket')
 
 module.exports = {
   getCurrencyRateBySymbol: async (req, res, next) => {
     try {
-      const symbol = _.get(req, 'body.locationKey')
+      const symbol = _.get(req, 'query.symbol')
       if (!symbol) {
         throw new Error('Missing params')
       }
       const rate = await getCurrencyRateBySymbol(symbol)
-      res.status(200).send(rate)
+      const saved = await saveRate(rate)
+      console.log('save succes')
+      res.status(200).send(saved)
     } catch (e) {
       res.status(500).send(e)
     }
   },
   getExCurrencyRates: async (req, res, next) => {
-    try {     
-      const rate = await getRates()
-      res.status(200).send(rate)
+    try {
+      const rates = await getRates()
+      const SavedRates = await saveRatesBulk(rates)
+      res.status(200).send(SavedRates)
     } catch (e) {
       res.status(500).send(e)
     }
   },
   fetchAllHistoricalRates: async (req, res, next) => {
-    try {      
+    try {
       const rates = await fetchSavedRated()
       res.status(200).send(rates)
     } catch (e) {

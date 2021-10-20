@@ -32,15 +32,28 @@ module.exports = {
         return reject(e)
       })
   },
-  saveRates: (rates) => {
-    //save rates to DB
-    console.log(currencies.btc)
+  saveRate: (rate) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        //save rates to DB
+        const rateModel = new Currency(rate)
+        const res = await rateModel.save()
+        resolve(res)
+      } catch (e) {
+        reject(e)
+      }
+    })
+
+    return
   },
-  saveRatesBulk: (rates) => {
+  saveRatesBulk: async (rates) => {
     //save a bulk of rates
+    const savedRates = await Currency.collection.insertMany(rates)
+    return savedRates
   },
-  fetchSavedRated: async (days) => {
-    const tasks = await Task.findAll()
+  fetchSavedRated: async () => {
+    const rates = await Currency.find()
+    return rates
   },
   getCurrencyRateBySymbol: (symbol) => {
     const options = {
@@ -58,11 +71,16 @@ module.exports = {
     }
     return rp(options)
       .then((res) => {
-        console.log(res)
-        return res
+        const rate = Object.entries(res.data).map((currentRate) => {
+          return {
+            symbol: currentRate[1].symbol,
+            rate: currentRate[1].quote.USD.price,
+          }
+        })
+        return rate[0]
       })
       .catch((e) => {
-        return reject(e)
+        return e
       })
   },
 }
