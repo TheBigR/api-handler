@@ -1,34 +1,34 @@
-const CronModel = require('../models/cronModel')
+const rp = require('request-promise')
 
 module.exports = {
-  toggleCronJob: (cronJob) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const filter = { name: cronJob.name }
-        const update = { active: !cronJob.active }
-        const doc = await CronModel.findOneAndUpdate(filter, update, {
-          new: true,
-          upsert: true,
-        })
-        resolve(doc)
-      } catch (e) {
-        reject(e)
-      }
-    })
+  toggleCronJob: () => {
+    const options = {
+      method: 'GET',
+      uri: process.env.CRON_JOB_TOGGLE_URL,
+      json: true,
+      gzip: true,
+    }
+    return rp(options)
+      .then((res) => {
+        return res
+      })
+      .catch((e) => {
+        return e
+      })
   },
-  getCronJobStatus: (name) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const filter = { name }
-        const update = {}
-        const doc = await CronModel.findOneAndUpdate(filter, update, {
-          new: true,
-          upsert: true,
-        })
-        resolve(doc)
-      } catch (e) {
-        reject(e)
-      }
-    })
+  getCronJobStatus: () => {
+    const options = {
+      method: 'GET',
+      uri: process.env.CRON_JOB_STATUS_URL,
+      json: true,
+      gzip: true,
+    }
+    return rp(options)
+      .then((res) => {
+        return res
+      })
+      .catch((e) => {
+        return e
+      })
   },
 }

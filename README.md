@@ -26,13 +26,11 @@ run - npm run dev
 sends a call to the currencies endpoint (/currecny/excersize)
 every 5 minutes.
 
-first toggle cron job at:
+ toggle cron job at:
 
-- localhost:3001/ops/toggle-cron-job
+- localhost:3002/ops/toggle-cron-job
 
-then job must be triggred first at -
 
-- localhost:3002/activate-currency-updater
 
 weather -
 two methodes for getting the weather from accuweather - either by location key
