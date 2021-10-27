@@ -4,7 +4,7 @@ const { getDuckDuck } = require('../services/duckduckgo')
 module.exports = {
   getDuckDuckData: async (req, res, next) => {
     try {
-      const query = _.get(req, 'query')
+      const query = _.get(req, 'query.q')
       if (!query) {
         throw new Error('Missing params')
       }
