@@ -1,7 +1,6 @@
 const express = require('express')
 const port = process.env.PORT
 const app = express()
-require('./db/mongoose')
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
