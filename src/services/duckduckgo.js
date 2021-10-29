@@ -10,6 +10,15 @@ module.exports = {
     }
     return rp(options)
       .then((res) => {
+        // console.log(res)
+        const dd = _.map(res.RelatedTopics, (currentResult) => {
+          console.log(currentResult.toString() + ' current')
+          return {
+            url: currentResult.FirstURL,
+            Title: currentResult.Text,
+          }
+        })
+        console.log(dd.length)
         return res
       })
       .catch((e) => {
